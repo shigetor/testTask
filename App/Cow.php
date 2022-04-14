@@ -15,10 +15,6 @@ class Cow extends Animal
         $this->minProduct=$minProduct;
         $this->maxProduct=$maxProduct;
     }
-    public function getId(): string
-    {
-        return$this->id;
-    }
 
     public function getProductType()
     {

@@ -8,7 +8,11 @@ class Farm
     public array $productsArray = [];
     public array $nameAnimal =[];
 
-
+    /**
+     * Создание фермы, добавление видов животных
+     * @param array $countAnimal
+     * @return void
+     */
     public function createFarm(array $countAnimal): void
     {
         if (empty($this->animalArray)) {
@@ -21,19 +25,18 @@ class Farm
                 }
             }
         }
-
-    }
-    public function addAnimal(array $countAnimal):void{
-        foreach ($countAnimal as $name => $amount) {
-            $object = ucfirst($name);
-            $object = __NAMESPACE__ . '\\' . $object;
-            for ($i = 1; $i <= $amount/2; $i++) {
-                $this->animalArray["$name"][] = new $object();
-                $this->nameAnimal["$name"] += $amount;
-            }
-        }
     }
 
+    /**
+     * Добавление животных в фермы
+     * @param array $countAnimal
+     * @return void
+     */
+
+
+    /**
+     * Добавление в массив количество полученных продуктов
+     */
     public function Product(): void
     {
         foreach ($this->animalArray as $key => $animalUnit) {
@@ -42,6 +45,18 @@ class Farm
                 $product += $animal->getProduct();
             }
             $this->productsArray["$key"] = $product;
+        }
+    }
+}
+// Функция добавления животных
+//Исправил дабы можно было добавлять массивы животных не требуя вызова объекта класса
+function addAnimal(array $countAnimal, Farm $farm):void{
+    foreach ($countAnimal as $name => $amount) {
+        $object = ucfirst($name);
+        $object = __NAMESPACE__ . '\\' . $object;
+        for ($i = 1; $i <= $amount; $i++) {
+            $farm->animalArray["$name"][] = new $object();
+            $farm->nameAnimal["$name"] += 1;
         }
     }
 }
